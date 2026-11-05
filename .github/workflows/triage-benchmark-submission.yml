@@ -1,0 +1,38 @@
+name: Validate benchmark issue submission
+on:
+  issues:
+    types: [opened, edited]
+permissions:
+  contents: read
+  issues: write
+jobs:
+  triage:
+    if: startsWith(github.event.issue.title, '[benchmark]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Read the submitted numbers
+        env:
+          GH_TOKEN: \${{ github.token }}
+        run: gh api repos/\${{ github.repository }}/issues/\${{ github.event.issue.number }} --jq '.body' > submission.md
+      - name: Validate structure and arithmetic
+        run: |
+          python scripts/validate_benchmarks.py --issue-file submission.md > report.txt || true
+          wc -l < report.txt
+      - name: Label and post findings
+        env:
+          GH_TOKEN: \${{ github.token }}
+        run: |
+          gh label create community-data --repo \${{ github.repository }} --color 0e8a16 --force
+          gh label create unverified --repo \${{ github.repository }} --color d9969e --force
+          gh label create needs-manual-review --repo \${{ github.repository }} --color ffffff --force
+          gh issue edit \${{ github.event.issue.number }} --repo \${{ github.repository }} --add-label community-data --add-label unverified
+          if grep -q "INVALID" report.txt || grep -q "FLAG" report.txt; then
+            gh issue edit \${{ github.event.issue.number }} --repo \${{ github.repository }} --add-label needs-manual-review
+          fi
+          gh issue comment \${{ github.event.issue.number }} --repo \${{ github.repository }} --body-file report.txt
+

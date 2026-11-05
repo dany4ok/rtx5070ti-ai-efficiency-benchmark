@@ -1,0 +1,41 @@
+{
+  "schema": "benchmark-submission-v1",
+  "required_columns": [
+    "gpu_model",
+    "driver",
+    "os",
+    "model",
+    "quantization",
+    "engine",
+    "engine_version",
+    "power_limit_w",
+    "clock_mhz",
+    "avg_power_w",
+    "output_tokens",
+    "out_tok_s",
+    "tokens_per_joule",
+    "duration_s",
+    "requests"
+  ],
+  "optional_columns": [
+    "window_s",
+    "active_s",
+    "idle_power_w",
+    "prompt_tokens",
+    "energy_j",
+    "tokens_per_joule_window",
+    "out_tok_s_p50",
+    "out_tok_s_p95",
+    "voltage_mv",
+    "queue_wait_s",
+    "cache_reuse",
+    "source_link",
+    "contributor",
+    "verification"
+  ],
+  "missing_value": "N/A",
+  "privacy": "Numerical telemetry only. No prompts, chat text, credentials, API keys, client identifiers, hostnames, or file paths.",
+  "verification_default": "self-measured",
+  "ranking_rule": "Rank only against rows with the same GPU model, model name, quantization, and workload type."
+}
+

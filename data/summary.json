@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "measurement_window_utc": "2026-11-05T07:57:32Z to 2026-11-05T08:24:44.994Z",
+  "traffic_source": "real chat inference requests through a local model; no synthetic prompts, no extra requests",
+  "settings_changed": false,
+  "gpu": {
+    "model": "NVIDIA GeForce RTX 5070 Ti",
+    "driver": "621.01",
+    "vram_used_gb": 14.52,
+    "vram_total_gb": 15.9,
+    "power_limit_w": 252,
+    "power_limit_min_w": 250,
+    "power_limit_max_w": 300,
+    "clocks_sm_mhz": 2880,
+    "clock_ceiling_mhz": 3090,
+    "clock_cap_applied": false,
+    "voltage_mv": null,
+    "gpu_temp_c": 53.9
+  },
+  "workload": {
+    "model": "coder-iq1_m",
+    "quantization": null,
+    "engine": "Strata local host",
+    "engine_version": null,
+    "requests": 60,
+    "output_tokens": 45419,
+    "prompt_tokens": 3815668
+  },
+  "timing": {
+    "window_s": 1652.5,
+    "active_s": 1521.7,
+    "out_tok_s_active": 29.85,
+    "out_tok_s_window": 27.48,
+    "out_tok_s_p50": 56.4,
+    "out_tok_s_p95": 67.9,
+    "out_tok_s_min": 37.2,
+    "out_tok_s_max": 75.2,
+    "prompt_tok_s_p50": 2849,
+    "prompt_tok_s_p95": 3223,
+    "queue_wait_s": null
+  },
+  "power": {
+    "samples": 60,
+    "sample_interval_s": 1,
+    "mean_gpu_power_w": 185.1,
+    "idle_gpu_power_w": 98.3,
+    "gpu_utilization_pct_min": 89,
+    "gpu_utilization_pct_max": 100,
+    "per_request_power_w": null,
+    "cache_reuse": null
+  },
+  "energy": {
+    "active_energy_j": 281675,
+    "tokens_per_joule_active": 0.1612,
+    "joules_per_token_active": 6.2,
+    "session_energy_j_since_engine_start": 2480116,
+    "tokens_per_joule_session": 0.01831,
+    "joules_per_token_session": 54.6
+  },
+  "verification": "self-measured; raw files published, not independently reproduced"
+}
+

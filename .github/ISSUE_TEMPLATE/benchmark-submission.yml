@@ -1,0 +1,115 @@
+name: Submit Benchmark Results
+description: Add your own real-world AI inference measurements to the community leaderboard.
+title: "[benchmark] "
+labels: ["community-data", "unverified"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Numerical telemetry only. Do not include prompts, chat messages, API keys, credentials,
+        client identifiers, hostnames, or file paths. Write N/A for anything you could not measure,
+        and never estimate a number.
+  - type: input
+    id: gpu_model
+    attributes:
+      label: GPU model and VRAM
+      placeholder: NVIDIA GeForce RTX 5070 Ti, 12 GB
+      required: true
+  - type: input
+    id: driver
+    attributes:
+      label: NVIDIA driver version
+      placeholder: 621.01
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11 24H2
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: AI model and quantization
+      placeholder: coder-iq1_m, quantization N/A
+      required: true
+  - type: input
+    id: engine
+    attributes:
+      label: Inference engine and version
+      placeholder: llama.cpp 0.30
+      required: true
+  - type: input
+    id: power_limit_w
+    attributes:
+      label: GPU power limit (W)
+      placeholder: 252
+      required: true
+  - type: input
+    id: clock_mhz
+    attributes:
+      label: GPU clock configuration (MHz)
+      placeholder: 2880 MHz running, 3090 MHz ceiling, no cap
+      required: true
+  - type: input
+    id: avg_power_w
+    attributes:
+      label: Average GPU power consumption during inference (W)
+      placeholder: 185.1
+      required: true
+  - type: input
+    id: output_tokens
+    attributes:
+      label: Generated output tokens
+      placeholder: 45419
+      required: true
+  - type: input
+    id: out_tok_s
+    attributes:
+      label: Output tokens per second
+      placeholder: 29.85 during active inference, 27.48 over the whole window
+      required: true
+  - type: input
+    id: tokens_per_joule
+    attributes:
+      label: Tokens per joule
+      placeholder: 0.1612
+      required: true
+  - type: input
+    id: duration_s
+    attributes:
+      label: Measurement duration (seconds)
+      placeholder: 1652.5 window, 1521.7 active
+      required: true
+  - type: input
+    id: requests
+    attributes:
+      label: Number of inference requests
+      placeholder: 60
+      required: true
+  - type: input
+    id: data_file
+    attributes:
+      label: Benchmark data file (CSV or link)
+      placeholder: data/my-run.csv or a link to a sanitized CSV
+      required: true
+  - type: textarea
+    id: methodology
+    attributes:
+      label: Measurement methodology
+      placeholder: >
+        How GPU power was sampled, how tokens were counted, how active time was derived,
+        and how idle time was separated. Report N/A for anything the driver does not expose.
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: The data contains no prompts, chat messages, API keys, credentials, or client identifiers.
+          required: true
+        - label: The measurements come from real inference traffic, not synthetic benchmark prompts.
+          required: true
+        - label: This data is safe to publish publicly.
+          required: true
+

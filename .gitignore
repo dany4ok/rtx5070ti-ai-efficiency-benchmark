@@ -1,0 +1,4 @@
+*.tmp
+sample-test.csv
+__pycache__/
+
